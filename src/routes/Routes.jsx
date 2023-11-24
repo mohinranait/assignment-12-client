@@ -7,6 +7,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 import AddPost from '../pages/Dashboard/AddPost';
 import MyPosts from '../pages/Dashboard/MyPosts';
 import MyProfile from '../pages/Dashboard/MyProfile';
+import UpdatePosts from '../pages/Dashboard/UpdatePosts';
 
 const myRoutes = createBrowserRouter([
     {
@@ -38,6 +39,11 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'add-posts',
                 element : <AddPost />
+            },
+            {
+                path : 'posts/update/:id',
+                element : <UpdatePosts />,
+                loader : async ({params}) => await fetch(`http://localhost:5000/posts/${params.id}`)
             },
             {
                 path : 'my-posts',
