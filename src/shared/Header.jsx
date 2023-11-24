@@ -41,7 +41,7 @@ const Header = () => {
                                         </ul>
                                     </div>
                                 </> : 
-                                <button className="px-4 py-2 inline-block bg-purple-500 text-sm font-medium rounded text-white">Join Apply</button>
+                                <Link to={'/login'} className="px-4 py-2 inline-block bg-purple-500 text-sm font-medium rounded text-white">Join Apply</Link>
                             }
                            
                         </div>

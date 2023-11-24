@@ -8,6 +8,7 @@ import AddPost from '../pages/Dashboard/AddPost';
 import MyPosts from '../pages/Dashboard/MyPosts';
 import MyProfile from '../pages/Dashboard/MyProfile';
 import UpdatePosts from '../pages/Dashboard/UpdatePosts';
+import MemberShip from '../pages/Dashboard/MemberShip';
 
 const myRoutes = createBrowserRouter([
     {
@@ -51,7 +52,12 @@ const myRoutes = createBrowserRouter([
             },
             {
                 path : 'my-profile',
-                element : <MyProfile />
+                element : <MyProfile />,
+               
+            },
+            {
+                path : 'package',
+                element : <MemberShip />
             },
             
         ]
