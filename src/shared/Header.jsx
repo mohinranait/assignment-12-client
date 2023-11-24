@@ -34,7 +34,7 @@ const Header = () => {
                                         <span className="cursor-pointer" onClick={() => setIsOpen(!isOpen) }>
                                             <img className="w-10 h-10 rounded-full object-cover" src={user?.photoURL} alt="" />
                                         </span>
-                                        <ul className={`absolute right-0 top-full bg-white w-[150px] border rounded-md ${isOpen ? 'block':'hidden'} `}>
+                                        <ul className={`absolute z-[80] right-0 top-full bg-white w-[150px] border rounded-md ${isOpen ? 'block':'hidden'} `}>
                                             <li><div className="py-4 bg-gray-200 w-full   text-center">{user?.displayName}</div></li>
                                             <li><Link className="pl-4 inline-block py-1 mt-3 hover:text-purple-500" to={'/dashboard'}>Dashboard</Link></li>
                                             <li><button onClick={handleLogut} className="pl-4 inline-block py-1 mb-3 hover:text-purple-500">Logout</button></li>

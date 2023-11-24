@@ -5,8 +5,11 @@ const Posts = () => {
     return (
         <>
             <section>
-                <div className="container">
-                    <div className='grid grid-cols-5 gap-5'>
+                <div className="container mx-auto md:w-[500px]">
+                    <div className='grid gap-5'>
+                        <Post />
+                        <Post />
+                        <Post />
                         <Post />
                     </div> 
                 </div>
