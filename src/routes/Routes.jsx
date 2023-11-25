@@ -9,6 +9,9 @@ import MyPosts from '../pages/Dashboard/MyPosts';
 import MyProfile from '../pages/Dashboard/MyProfile';
 import UpdatePosts from '../pages/Dashboard/UpdatePosts';
 import MemberShip from '../pages/Dashboard/MemberShip';
+import PrivateRoute from './PrivateRoute';
+import ManageUsers from '../pages/Dashboard/ManageUsers';
+import AnnounceCreate from '../pages/Dashboard/AnnounceCreate';
 
 const myRoutes = createBrowserRouter([
     {
@@ -31,7 +34,7 @@ const myRoutes = createBrowserRouter([
     },
     {
         path : "/dashboard",
-        element : <DashboardLayout />,
+        element : <PrivateRoute><DashboardLayout /></PrivateRoute> ,
         children : [
             {
                 index: true,
@@ -58,6 +61,16 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'package',
                 element : <MemberShip />
+            },
+
+            // Admin Routes
+            {
+                path :'manage-users',
+                element : <ManageUsers />
+            },
+            {
+                path :'make-announcements',
+                element : <AnnounceCreate />
             },
             
         ]

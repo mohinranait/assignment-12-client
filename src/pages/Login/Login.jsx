@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocilaLogin from "../../components/socilaLogin/SocilaLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -8,14 +8,16 @@ import toast from "react-hot-toast";
 const Login = () => {
     const {loginUser} = useAuth();
     const {register,  handleSubmit, formState: { errors }, } = useForm()
-
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const onSubmit = async (data) => {
         const {email, password} = data || {};
         const toastId = toast.loading("Loading");
         try {
             await loginUser(email, password)
-            toast.success("Login Success", {id: toastId})
+            toast.success("Login Success", {id: toastId});
+            navigate(location?.pathname ? location?.pathname : '/')
         } catch (error) {
             toast.error("Somthing wrong your crediantials", {id: toastId})
         }

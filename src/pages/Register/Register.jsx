@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import uploadImage from "../../services/uploadImage";
+import { useState } from "react";
+
 
 
 
@@ -12,34 +14,59 @@ import uploadImage from "../../services/uploadImage";
 const Register = () => {
     const {createUser,userUpdate} = useAuth();
     const axiosPublic = useAxiosPublic();
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const {register,  handleSubmit, formState: { errors }, } = useForm()
 
     
     const onSubmit = async (data) => {
-     
-        // Upload profile image
-        const image = data.image[0];
-        const imageUrl = await uploadImage(image);
 
-        // User form data
-        const {name, email,password} = data;
+        
 
+        
+
+        let toastId = toast.loading('Loading...')
         try {
+            // Check duplicate user name
+            const userNameCheck = await axiosPublic.post('/check-user-name', {userName: data?.userName})
+            if(userNameCheck.data.success === 'exists'){
+                setError("This user name already exists")
+                toast.error("This user name already exists",{id:toastId})
+                return;
+            }else{
+                setError('')
+            }
+
+
+
+
+            // Upload profile image
+            const image = data.image[0];
+            const imageUrl = await uploadImage(image);
+
+            // // User form data
+            const {name, email,password,userName} = data;
+
+
             await createUser(email, password);
             await userUpdate(name, imageUrl);
             // Save user info my database
             await axiosPublic.post("/users", {
                 name,
-                userName:'',
+                userName: userName ? userName :'',
                 email,
                 profile: imageUrl,
             })
-            toast.success("Register success")
+            toast.success("Register success", {id: toastId})
             navigate("/")
         } catch (error) {
-            toast.error(error.message)
-            console.log(error);
+            if(error.message === 'Firebase: Error (auth/email-already-in-use).'){
+                setError("Your email already exists")
+                toast.error("Your email already exists",{id: toastId})
+            }else{
+
+                toast.error(error.message ,{id: toastId})
+            }
         }
        
     }
@@ -51,8 +78,8 @@ const Register = () => {
             message: "Email charecter length must bee 5 charecter"
         },
         maxLength: {
-            value : 20,
-            message : "Email charecter limit is 20"
+            value : 50,
+            message : "Email charecter limit is 50"
         },
         pattern: {
             value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -72,16 +99,30 @@ const Register = () => {
         }
     }
 
+
+
+
     return (
         <section className=''>
             <div className='' >
                 <div className="container flex items-start">
                     <div className=" w-[300px] md:w-[450px] overflow-hidden  mx-auto rounded-lg">
-                        
+                            
                             <div className='px-5 py-5 md:px-10 md:pb-10 rounded-b-lg bg-secondary '>
                                 <div className='text-3xl pb-5 font-semibold text-gray-800'>Register Form</div>
+                                {
+                                    error &&   <div>
+                                    <p className="py-2 bg-red-50 shadow text-red-500 text-center rounded">{error}</p>
+                                </div>
+                                }
+                              
                                 <div>
                                     <form onSubmit={handleSubmit(onSubmit)}>
+                                        <div className='mb-4'>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-800'>User name</label>
+                                            <input type="text"  name='userName' {...register("userName", { required: 'User naem is required' })} placeholder='User name' className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' />
+                                            <p className="text-red-500 text-sm">{errors.userName && errors.userName.message }  </p>
+                                        </div>
                                         <div className='mb-4'>
                                             <label htmlFor="" className='mb-1 block font-medium text-gray-800'>Full Name</label>
                                             <input type="text" name='name' {...register("name", { required: 'Name fild is required' })} placeholder='Full Name' className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' />

@@ -2,18 +2,23 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import PostRow from "../../components/tableRows/PostRow";
 import useAuth from "../../hooks/useAuth";
+import Loader from "../../components/Loader/Loader";
 
 
 const MyPosts = () => {
     const {user} = useAuth();
     const axios = useAxios();
-    const {data:myPosts=[]} = useQuery({
+    const {data:myPosts=[], isLoading, isPending} = useQuery({
         queryKey: ['myPosts', user?.email],
         queryFn: async () => {
             const {data} = await axios.get(`/owner-posts/${user?.email}`);
             return data?.data;
         }
     })
+
+    if(isPending || isLoading){
+        return <Loader />
+    }
     return (
         <div>
             <div className="mt-5">
@@ -35,6 +40,9 @@ const MyPosts = () => {
                             }                            
                         </tbody>
                     </table>
+                    <div>
+                        {myPosts.length == 0 && <div className="text-center bg-blue-50 text-blue-600 font-medium py-2 mt-4 rounded ">No Data found</div> }
+                    </div>
                 </div>
             </div>
         </div>

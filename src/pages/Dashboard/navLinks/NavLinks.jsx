@@ -24,7 +24,7 @@ const NavLinks = [
         path : 'my-posts',
     },
     {
-        id : 3,
+        id : 4,
         link : "my-profile",
         name : "My Profile",
         icon : <IoGiftOutline className='text-lg' />,

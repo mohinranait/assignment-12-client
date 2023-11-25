@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import AddPostForm from "../../components/forms/AddPostForm";
+import Loader from "../../components/Loader/Loader";
 
 const BecomeSellerButton = () => {
     return (
@@ -27,7 +28,7 @@ const AddPost = () => {
     const {user} = useAuth();
     const axios = useAxios();
 
-    const {data:postCounts=0} = useQuery({
+    const {data:postCounts=0, isLoading} = useQuery({
         queryKey: ['postsCounts', user?.email],
         queryFn: async () => {
             const {data} = await axios.get(`/posts-count/${user?.email}`);
@@ -44,8 +45,9 @@ const AddPost = () => {
         fetchUser();
     },[user?.email,axios])
 
-
-    
+    if(isLoading){
+        return <Loader />
+    }
 
     return (
         <div>
