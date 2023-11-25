@@ -1,41 +1,56 @@
-import React from 'react';
-import { FaHandPointDown, FaHandPointUp, FaShare, FaShareAlt } from 'react-icons/fa';
 
-const Post = () => {
+import { FaClock, FaComment, FaCommentAlt, FaHandPointDown, FaHandPointUp, FaShare, FaShareAlt, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
+
+import { Link } from 'react-router-dom';
+
+const Post = ({post}) => {
+    const {title, authorImage,description, tag,createAt,upVote, downVote,_id} = post || {};
+    let options = {  day: 'numeric', month: 'long', year: 'numeric' };
+
+   
+
     return (
-        <div className='py-5 border-b'>
-            <div className='flex justify-between items-center'>
-                <div className='flex gap-1 items-center'>
-                    <div>
-                        <img className='w-12 h-12 rounded-full' src="https://static.vecteezy.com/system/resources/previews/002/002/257/non_2x/beautiful-woman-avatar-character-icon-free-vector.jpg" alt="" />
+        <>
+            <div className='border shadow-sm bg-white'>
+                <div className='flex gap-5 py-5 px-5'>
+                    <div className=''>
+                        <span className='w-10 h-10 inline-block'>
+                            <img className='w-10 h-10 rounded-full' src={ authorImage ? authorImage : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_640.png"} alt="" />
+                        </span>
+                        <div className='flex flex-col items-center gap-3 mt-3'>
+                            <span className='flex gap-1 items-center text-[#1abc9c] cursor-pointer'> <FaThumbsUp /><span className='text-sm'>{upVote}</span></span>
+                            <span className='flex gap-1 items-center text-[#db7a7a] cursor-pointer'><FaThumbsDown /><span className='text-sm'>{downVote}</span></span>
+                        </div>
                     </div>
-                    <div>
-                        <p className='text-sm font-medium'>Mohin Rana</p>
-                        <p className='text-xs '>12/14/2023</p>
+                    <div className='w-full'>
+                        <p className='text-lg text-gray-600 font-medium'> <Link to={`/post/${_id}`}>{title}</Link> </p>
+                        <p className='text-sm text-[#3c78cd] mb-3'># {tag}</p>
+                        <hr className='pb-3'/>
+                        <p className='text-[15px] leading-6 text-gray-500 font-normal'>{description}</p>
                     </div>
                 </div>
-                <div>
-                    <button><FaShareAlt /></button>
+                <hr />
+                <div className='py-1'>
+                    <div className='flex px-5 gap-6'>
+                        <div className=''>
+                            <span className='w-10 h-10 inline-block'></span>
+                        </div>
+                        <div className='flex items-center justify-between gap-4 w-full'>
+                            <div className='flex items-center gap-4'>
+                                <span className='flex gap-1 items-center text-gray-400'><FaClock /><span className='text-xs text-gray-500'>Posted on : {new Date(createAt).toLocaleDateString('en-US', options )} </span></span>
+                            
+                            </div>
+                            <div className='flex items-center gap-4'>
+                            <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm'>Comments: 10</span></span>
+                             
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
-            <div className='my-3'>
-                <img className='rounded-md' src="https://media.istockphoto.com/id/1014903134/vector/flat-style-vector-illustration-discuss-social-network-news-chat-dialogue-speech-bubbles.jpg?s=612x612&w=0&k=20&c=14cpsgrmH1ruo2_tVJPlRIBBB7VNnpNYz8tuTl3ZHkg=" alt="" />
-            </div>
-            <div className='flex justify-between items-center mb-2 mt-2'>
-                <ul className='flex items-center gap-1'>
-                    <li><a href="#" className='px-2 text-sm py-1 rounded bg-gray-100 hover:bg-gray-200 flex items-center gap-1'>Vote Down<FaHandPointDown /></a></li>
-                    <li><a href="#" className='px-2 text-sm py-1 rounded bg-gray-100 hover:bg-gray-200 flex items-center gap-1'>Vote Up<FaHandPointUp /></a></li>
-                </ul>
-                <a href="#" className='text-sm px-2 py-1 rounded bg-gray-100 hover:bg-gray-200'>Comment</a>
-            </div>
-            <div className=' items-center  mt-2 '>
-                <p className='text-xs font-medium text-purple-400 '>#apple</p>
-                <p className='text-sm font-medium my-1'>Lorem ipsum dolor sit amet.</p>
-                
-                <p className='text-xs font-medium'>Lorem ipsum dolor sit amet.</p>
-            </div>
-        </div>
-    );
+        </>
+    )
 };
 
 export default Post;

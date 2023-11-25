@@ -12,6 +12,7 @@ import MemberShip from '../pages/Dashboard/MemberShip';
 import PrivateRoute from './PrivateRoute';
 import ManageUsers from '../pages/Dashboard/ManageUsers';
 import AnnounceCreate from '../pages/Dashboard/AnnounceCreate';
+import Details from '../pages/Details/Details';
 
 const myRoutes = createBrowserRouter([
     {
@@ -29,7 +30,12 @@ const myRoutes = createBrowserRouter([
             {
                 path : "/register",
                 element : <Register />
-            }
+            },  
+            {
+                path : 'post/:id',
+                element : <PrivateRoute><Details /></PrivateRoute> ,
+                loader : async ({params}) => await fetch(`http://localhost:5000/posts/${params?.id}`)
+            },
         ]
     },
     {
@@ -62,6 +68,7 @@ const myRoutes = createBrowserRouter([
                 path : 'package',
                 element : <MemberShip />
             },
+          
 
             // Admin Routes
             {
