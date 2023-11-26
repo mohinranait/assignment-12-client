@@ -22,7 +22,7 @@ const SocilaLogin = () => {
                 userName:'',
                 email: response?.user?.email,
             })
-            navigate(location?.pathname ? location?.pathname : '/')
+            navigate(location?.state ? location?.state : '/')
             toast.success('Create successfull', {id: toastId})
         } catch (error) {
             toast.error(error.message, {id: toastId})

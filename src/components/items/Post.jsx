@@ -1,13 +1,23 @@
+/* eslint-disable react/prop-types */
 
-import { FaClock, FaComment, FaCommentAlt, FaHandPointDown, FaHandPointUp, FaShare, FaShareAlt, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
+import { FaClock, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const Post = ({post}) => {
+    const axiosPublic = useAxiosPublic();
     const {title, authorImage,description, tag,createAt,upVote, downVote,_id} = post || {};
     let options = {  day: 'numeric', month: 'long', year: 'numeric' };
 
-   
+    const {data:comments=[], } = useQuery({
+        queryKey: ['commentss',_id],
+        queryFn: async () => {
+            const {data} = await axiosPublic.get(`/comments/${_id}`)
+            return data;
+        }
+    })
 
     return (
         <>
@@ -15,7 +25,7 @@ const Post = ({post}) => {
                 <div className='flex gap-5 py-5 px-5'>
                     <div className=''>
                         <span className='w-10 h-10 inline-block'>
-                            <img className='w-10 h-10 rounded-full' src={ authorImage ? authorImage : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_640.png"} alt="" />
+                            <img className='w-10 h-10 rounded-full object-cover' src={ authorImage ? authorImage : "https://www.seekpng.com/png/detail/966-9665317_placeholder-image-person-jpg.png"} alt="" />
                         </span>
                         <div className='flex flex-col items-center gap-3 mt-3'>
                             <span className='flex gap-1 items-center text-[#1abc9c] cursor-pointer'> <FaThumbsUp /><span className='text-sm'>{upVote}</span></span>
@@ -41,7 +51,7 @@ const Post = ({post}) => {
                             
                             </div>
                             <div className='flex items-center gap-4'>
-                            <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm'>Comments: 10</span></span>
+                            <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm'>Comments: {comments?.length}</span></span>
                              
                             </div>
                         </div>

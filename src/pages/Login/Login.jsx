@@ -10,6 +10,7 @@ const Login = () => {
     const {register,  handleSubmit, formState: { errors }, } = useForm()
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location);
 
     const onSubmit = async (data) => {
         const {email, password} = data || {};
@@ -17,7 +18,7 @@ const Login = () => {
         try {
             await loginUser(email, password)
             toast.success("Login Success", {id: toastId});
-            navigate(location?.pathname ? location?.pathname : '/')
+            navigate(location?.state ? location?.state : '/')
         } catch (error) {
             toast.error("Somthing wrong your crediantials", {id: toastId})
         }

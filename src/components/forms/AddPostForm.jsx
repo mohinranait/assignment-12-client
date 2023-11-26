@@ -4,14 +4,27 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
 
 
 const AddPostForm = () => {
+
     const {register,  handleSubmit, formState: { errors }, } = useForm()
     const axios = useAxios();
     const {user} = useAuth();
     const navigate = useNavigate();
 
+    const {data:tags=[]} = useQuery({
+        queryKey: ['tags'],
+        queryFn: async () => {
+            const {data} = await axios.get('/get-all-tags');
+            return data;
+        }
+    })
+
+
+
+ 
 
     const onSubmit = async (data) => {
         const toastId = toast.loading("Loading...");
@@ -56,9 +69,9 @@ const AddPostForm = () => {
                             <label className="mb-2 inline-block" htmlFor="">Search Tag</label>
                             <select name="tag" {...register('tag', {required:true})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
                                 <option value="">Select Tag</option>
-                                <option value="tag1">Tag 1</option>
-                                <option value="tag-2">Tag 2</option>
-                                <option value="tag3">Tag 3</option>
+                                {
+                                    tags?.map((tag,index) =>   <option key={index} value={tag?.tag}>{tag?.tag}</option> )
+                                }
                             </select>
                             <p className="text-red-500 text-sm">{errors.tag && errors.tag.message }</p>
                         </div>

@@ -13,6 +13,8 @@ import PrivateRoute from './PrivateRoute';
 import ManageUsers from '../pages/Dashboard/ManageUsers';
 import AnnounceCreate from '../pages/Dashboard/AnnounceCreate';
 import Details from '../pages/Details/Details';
+import AdminProfile from '../pages/Dashboard/AdminProfile';
+import Dashboard from '../components/dashboard/Dashboard';
 
 const myRoutes = createBrowserRouter([
     {
@@ -44,7 +46,7 @@ const myRoutes = createBrowserRouter([
         children : [
             {
                 index: true,
-                element : <div>dashboard</div>
+                element : <Dashboard />
             },
             {
                 path : 'add-posts',
@@ -78,6 +80,10 @@ const myRoutes = createBrowserRouter([
             {
                 path :'make-announcements',
                 element : <AnnounceCreate />
+            },
+            {
+                path :'admin-profile',
+                element : <AdminProfile />
             },
             
         ]
