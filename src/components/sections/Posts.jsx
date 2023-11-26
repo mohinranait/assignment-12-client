@@ -36,10 +36,7 @@ const Posts = () => {
 
     return (
         <>
-            <section className='my-16'>
-                <div className="container px-4 md:px-0">
-                    <div className='grid lg:grid-cols-3  gap-5'>
-                        <div className='col-span-2 grid grid-cols-1 gap-7'>
+          
                             {
                                  getAllPosts?.data?.map(post => <Post key={post?._id} post={post} />)
                             }
@@ -58,13 +55,7 @@ const Posts = () => {
                                   
                                 </ul>
                             </div>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div> 
-                </div>
-            </section>  
+            
         </>
     );
 };

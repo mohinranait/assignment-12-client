@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
+import { FaBell } from "react-icons/fa";
+import useAnnouncement from "../hooks/useAnnouncement";
+import Logo from "./Logo";
 
 
 const Header = () => {
+    const [announcements] = useAnnouncement();
     const [isOpen , setIsOpen] = useState(false);
     const {user,logOut} = useAuth();
 
@@ -15,19 +19,18 @@ const Header = () => {
             <header className="py-3 shadow">
                 <div className="container ">
                     <div className="grid grid-cols-12 items-center ">
-                        <div className="col-span-2">
-                            <Link>
-                                <span className="text-purple-600 font-bold text-3xl">P<span className="text-gray-800">MOR</span> </span>
-                            </Link>
+                        <div className="col-span-3">
+                           <Logo />
                         </div>
-                        <div className="col-span-7">
-                            <ul className="flex items-center justify-center gap-5">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Member Ship</a></li>
-                                <li><a href="#">Notifications</a></li>
+                        <div className="col-span-9 flex gap-4 justify-end items-center">
+                        <ul className="flex items-center justify-center gap-5">
+                                <li><Link to={'/'}>Home</Link></li>
+                                <li><Link to={'/dashboard/package'} >Membership</Link></li>
                             </ul>
-                        </div>
-                        <div className="col-span-3 flex justify-end items-center">
+                            <span className="relative">
+                                <span className="text-gray-500"> <FaBell size={23} /> </span>
+                                <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">{announcements?.length}</span>
+                            </span>
                             {
                                 user?.email ? <>
                                     <div className="relative">

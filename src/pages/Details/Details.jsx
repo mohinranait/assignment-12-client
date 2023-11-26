@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Anouncements from "../../components/anouncements/Anouncements";
 
 
 
@@ -73,7 +74,6 @@ const Details = () => {
             } catch (error) {
                 toast.error(error.message, {id:toastId})
             }
-            
         }
     }
 
@@ -190,7 +190,9 @@ const Details = () => {
 
                     </div>
                     <div>
-
+                        <div>
+                            <Anouncements />
+                        </div>
                     </div>
                 </div> 
             </div>
