@@ -3,38 +3,48 @@ import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import uploadImage from "../../services/uploadImage";
+import { useQuery } from "@tanstack/react-query";
 
 
 const UpdatePosts = () => {
     const post = useLoaderData();
-
     const {register,  handleSubmit, formState: { errors }, } = useForm()
     const {user} = useAuth();
     const axios = useAxios();
     const navigate = useNavigate();
 
+
+
+    const {data:getAllTags} = useQuery({
+        queryKey: ['getAll-tagsupdate'],
+        queryFn : async () => {
+            const {data} = await axios.get('/get-all-tags');
+            return data;
+        }
+    })
+
+
     const onSubmit = async (data) => {
         
         const toastId = toast.loading("Loading...");
-        console.log('press');
+        // console.log('press');
         // Upload profile image
-        const image = data.image[0];
-        let newImg = null;
-        if(image){
-            const imageUrl = await uploadImage(image);
-            newImg = imageUrl
-        }
+        // const image = data.image[0];
+        // let newImg = null;
+        // if(image){
+        //     const imageUrl = await uploadImage(image);
+        //     newImg = imageUrl
+        // }
      
         try {
             const updatePostData = {
                 title: data.title,
                 tag : data.tag,
                 description: data.description,
-                image : newImg ? newImg : post?.image,
-                authorImage : user?.photoURL,
-                authorName: user?.displayName,
-                authorEmail: user?.email,
+                // image : newImg ? newImg : post?.image,
+                // authorImage : user?.photoURL,
+                // authorName: user?.displayName,
+                // authorEmail: user?.email,
                 updateAt: new Date(),
             }
 
@@ -42,7 +52,6 @@ const UpdatePosts = () => {
             if(result){
                 toast.success("Update Successfull", {id: toastId});
                 navigate('/dashboard/my-posts')
-           
             }
         } catch (error) {
             console.log(error);
@@ -64,11 +73,11 @@ const UpdatePosts = () => {
                             </div>
                             <div className="mb-5">
                                 <label className="mb-2 inline-block" htmlFor="">Search Tag</label>
-                                <select name="tag" {...register('tag', {required:true})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
+                                <select name="tag" {...register('tag', {required:"Filed is required"})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
                                     <option value="">Select Tag</option>
-                                    <option value="tag1"  >Tag 1</option>
-                                    <option value="tag-2"  >Tag 2</option>
-                                    <option value="tag3"  >Tag 3</option>
+                                    {
+                                        getAllTags?.map(item => <option key={item?._id} value={item?.tag} selected={post?.tag == item?.tag} >{item?.tag}</option> )
+                                    }
                                 </select>
                                 <p className="text-red-500 text-sm">{errors.tag && errors.tag.message }</p>
                             </div>
@@ -77,14 +86,14 @@ const UpdatePosts = () => {
                                 <textarea name="description" defaultValue={post?.description} placeholder="Description" {...register("description", { required: 'Description is required' })} id="" cols="30" rows="3" className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none'></textarea>
                                 <p className="text-red-500 text-sm">{errors.description && errors.description.message }</p>
                             </div>
-                            <div className="mb-5">
+                            {/* <div className="mb-5">
                                 <label className="mb-2 inline-block" htmlFor="">Image</label> <br />
                                 <div className="flex gap-3">
                                     <input type="file" name="image" {...register("image")} />
                                     {post?.image && <img className="w-20" src={post?.image} alt="" /> }
                                 </div>
                                 <p className="text-red-500 text-sm">{errors.image && errors.image.message }</p>
-                            </div>
+                            </div> */}
                         </div>
                         <div>
                             <div className="mb-5">

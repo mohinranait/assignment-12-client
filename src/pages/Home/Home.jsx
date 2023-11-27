@@ -4,10 +4,14 @@ import Posts from "../../components/sections/Posts";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Anouncements from "../../components/anouncements/Anouncements";
+import { useState } from "react";
 
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
+    const [page,setPage] = useState(1);
+    const [searchValue, setSearchValue] = useState('');
+
 
     const {data:getAllTags} = useQuery({
         queryKey: ['getAll-tags'],
@@ -17,16 +21,25 @@ const Home = () => {
         }
     })
 
+    
+    const {data:getAllPosts=[]} = useQuery({
+        queryKey : ['getAllPosts',page,searchValue],
+        queryFn : async () => {
+            const response = await axiosPublic.get(`/posts?page=${page}&search=${searchValue}`);
+            return response.data;
+        }
+    })
+
    
     return (
         <>
-            <HomeBanner />  
+            <HomeBanner searchValue={searchValue} setSearchValue={setSearchValue} />  
             <section className="py-3 bg-white shadow-sm">
                 <div className="container px-5 md:px-0">
                     <ul className=" flex items-center justify-center flex-wrap gap-2 ">
                         {
                             getAllTags?.map(item => <li key={item?._id} className="bg-gray-50  rounded-3xl overflow-hidden hover:bg-gray-200 cursor-pointer px-3 py-2">
-                                <p className="text-gray-500 text-xs ">#{item?.tag}</p>
+                                <p onClick={() => setSearchValue(item?.tag)} className="text-gray-500 text-xs ">#{item?.tag}</p>
                             </li> )
                         }
                     </ul>
@@ -37,7 +50,7 @@ const Home = () => {
                 <div className="container px-4 md:px-0">
                     <div className='grid lg:grid-cols-3  gap-7'>
                         <div className='col-span-2 grid grid-cols-1 gap-7'>
-                            <Posts /> 
+                            <Posts getAllPosts={getAllPosts} page={page} setPage={setPage} /> 
                         </div>
                         <div>
                             <div className="grid gap-7">

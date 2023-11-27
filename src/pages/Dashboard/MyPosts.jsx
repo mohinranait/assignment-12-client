@@ -8,7 +8,7 @@ import Loader from "../../components/Loader/Loader";
 const MyPosts = () => {
     const {user} = useAuth();
     const axios = useAxios();
-    const {data:myPosts=[], isLoading, isPending} = useQuery({
+    const {data:myPosts=[], isLoading, isPending, refetch} = useQuery({
         queryKey: ['myPosts', user?.email],
         queryFn: async () => {
             const {data} = await axios.get(`/owner-posts/${user?.email}`);
@@ -31,12 +31,13 @@ const MyPosts = () => {
                                 <th className="text-left py-2 pl-2">Posts</th>
                                 <th className="text-left py-2 pl-2">Votes</th>
                                 <th className="text-left py-2 pl-2">Comments</th>
+                                <th className="text-left py-2 pl-2">Visibility</th>
                                 <th className="text-left py-2 pl-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                myPosts.length > 0 && myPosts?.map((item,index) => <PostRow key={item?._id} index={index} post={item} /> )
+                                myPosts.length > 0 && myPosts?.map((item,index) => <PostRow key={item?._id} refetch={refetch} index={index} post={item} /> )
                             }                            
                         </tbody>
                     </table>

@@ -35,7 +35,7 @@ const myRoutes = createBrowserRouter([
             },  
             {
                 path : 'post/:id',
-                element : <PrivateRoute><Details /></PrivateRoute> ,
+                element : <Details /> ,
                 loader : async ({params}) => await fetch(`http://localhost:5000/posts/${params?.id}`)
             },
         ]

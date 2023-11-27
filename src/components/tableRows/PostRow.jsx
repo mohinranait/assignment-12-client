@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
+import toast from 'react-hot-toast';
+import { FaGlobe, FaGlobeAsia, FaLock } from 'react-icons/fa';
 
-const PostRow = ({post,index}) => {
-    const {image, title, tag, upVote,downVote,_id} = post ||{};
+const PostRow = ({post,index, refetch}) => {
+    const {image, title, tag, upVote,downVote,_id,visivility} = post ||{};
     const axios = useAxios();
     const queryClient = useQueryClient();
 
@@ -42,8 +44,19 @@ const PostRow = ({post,index}) => {
                 myPostsDelete(id)
               
             }
-          });
-       
+        });
+    }
+
+
+    const handlePostVisibility = async (currentValue) => {
+        let dataValue = !currentValue
+        try {
+            await axios.patch(`/posts/${_id}` , {visivility:dataValue})
+            refetch();
+            toast.success("Updated visibility")
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
     return (
         <>
@@ -51,26 +64,31 @@ const PostRow = ({post,index}) => {
                 <td className="py-2 pl-2">{++index}</td>
                 <td className="py-2 pl-2">
                     <div className='flex gap-2 items-center'>
-                        {
+                        {/* {
                             image && <img src={image} className='w-16' alt="" />
-                        }
-                        <p>{title}</p>
+                        } */}
+                        <p className='text-gray-500 text-sm'>{title}</p>
                     </div>
                 </td>
                 <td className="py-2 pl-2 ">
                     <div>
-                        <p className='text-sm'>UpVotes: <span className='font-medium'>{upVote}</span></p>
-                        <p className='text-sm'>DownVotes: <span className='font-medium'>{upVote}</span></p>
+                        <p className='text-sm text-gray-500'>UpVotes: <span className='font-medium'>{upVote}</span></p>
+                        <p className='text-sm text-gray-500'>DownVotes: <span className='font-medium'>{downVote}</span></p>
                     </div>
                 </td>
                 <td className="py-2 pl-2 ">
-                    <button className='px-3 py-1 inline-block bg-gray-100 rounded text-sm'>
-                       Comments (0)
-                    </button>
+                    <Link to={`/post/${_id}`} className='px-3 text-gray-500 hover:bg-gray-200 py-1 inline-block bg-gray-100 rounded text-sm'>
+                       Comments 
+                    </Link>
+                </td>
+                <td className="py-2 pl-2 ">
+                    <button onClick={() => handlePostVisibility(visivility)} className='px-3 text-gray-500 hover:bg-gray-200 py-1 inline-block bg-gray-100 rounded text-sm'>
+                       {visivility ? <span className='flex gap-1 items-center'>Public <FaGlobeAsia size={10} /></span>  : <span className='flex gap-1 items-center'>Only Me <FaLock size={10} /></span> }
+                    </button> 
                 </td>
                 <td className='pr-2'>
                     <div className='flex gap-2 justify-end items-center align-middle'>
-                        <Link to={`/dashboard/posts/update/${_id}`} className='px-2 py-1 rounded bg-purple-50 border-purple-500 text-purple-500'>Edit</Link>
+                        <Link to={`/dashboard/posts/update/${_id}`} className='px-2   py-1 rounded bg-purple-50 border-purple-500 text-purple-500'>Edit</Link>
                         <button onClick={() => handleDeleteMyPosts(_id)} className='px-2 py-1 rounded text-purple-50 bg-purple-500'>Delete</button>
                     </div>
                 </td>

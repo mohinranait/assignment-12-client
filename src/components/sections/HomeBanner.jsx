@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 
 
-const HomeBanner = () => {
+const HomeBanner = ({setSearchValue,searchValue}) => {
     return (
         <>
             <div className="bg-cover bg-center relative" style={{backgroundImage:`url('https://aardvark.ghostpool.com/original/wp-content/uploads/sites/6/2017/11/membership-circles.png')`}}>
@@ -13,7 +14,7 @@ const HomeBanner = () => {
                             </div>
                             <div className="flex flex-col gap-2"> 
                                 <div className="flex rounded">
-                                    <input type="text" className="w-full py-3 px-3 rounded-l" placeholder="Search" />
+                                    <input type="text" onChange={(e) => setSearchValue(e.target.value)} defaultValue={searchValue} className="w-full py-3 px-3 rounded-l" placeholder="Search" />
                                     <button className="bg-purple-500 text-white px-5 text-sm font-semibold rounded-r">Search</button>
                                 </div>
                                 <div className="flex gap-1">

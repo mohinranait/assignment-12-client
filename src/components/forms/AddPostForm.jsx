@@ -1,5 +1,4 @@
 import toast from "react-hot-toast";
-import uploadImage from "../../services/uploadImage";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -30,8 +29,8 @@ const AddPostForm = () => {
         const toastId = toast.loading("Loading...");
 
         // Upload profile image
-        const image = data.image[0];
-        const imageUrl = await uploadImage(image);
+        // const image = data.image[0];
+        // const imageUrl = await uploadImage(image);
 
 
      
@@ -40,7 +39,7 @@ const AddPostForm = () => {
                 title: data.title,
                 tag : data.tag,
                 description: data.description,
-                image : imageUrl,
+                // image : imageUrl,
                 authorImage : user?.photoURL,
                 authorName: user?.displayName,
                 authorEmail: user?.email,
@@ -67,7 +66,7 @@ const AddPostForm = () => {
                         </div>
                         <div className="mb-5">
                             <label className="mb-2 inline-block" htmlFor="">Search Tag</label>
-                            <select name="tag" {...register('tag', {required:true})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
+                            <select name="tag" {...register('tag', {required: "Filed is required"})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
                                 <option value="">Select Tag</option>
                                 {
                                     tags?.map((tag,index) =>   <option key={index} value={tag?.tag}>{tag?.tag}</option> )
@@ -80,11 +79,11 @@ const AddPostForm = () => {
                             <textarea name="description" placeholder="Description" {...register("description", { required: 'Description is required' })} id="" cols="30" rows="3" className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none'></textarea>
                             <p className="text-red-500 text-sm">{errors.description && errors.description.message }</p>
                         </div>
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <label className="mb-2 inline-block" htmlFor="">Image</label> <br />
                             <input type="file" name="image" {...register("image", { required: 'Image is required' })} />
                             <p className="text-red-500 text-sm">{errors.image && errors.image.message }</p>
-                        </div>
+                        </div> */}
                     </div>
                     <div>
                         <div className="mb-5">
@@ -100,7 +99,7 @@ const AddPostForm = () => {
         
                 <div className="grid grid-cols-2 gap-5 mb-5 mt-6">
                     <div>
-                    <button className="w-full py-2 bg-purple-600 text-white rounded">Submit</button>
+                        <button className="w-full py-2 bg-purple-600 text-white rounded">Save </button>
                     </div>
                 </div>
             </form>   
