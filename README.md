@@ -1,8 +1,23 @@
-# React + Vite
+# Online conversation using post
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Some project features
+- React , tailwindcss conversation web app with Mongoose
+- Create User account can post for free.
+- Upgrade user  membership badge for $30 with online payment (Stripe)
+- Manage posts
+- He has complete control in his posts. He can keep his account private if he wants and publish it if he wants.
+- Post polularity count using vote 
+- Post Comments and report comment
+- Reported comment controll by app admin
+- Report comment customize by admin and action for delete
+- User profile mange
+- Mange all user by Admin
+- post Pagination
 
-Currently, two official plugins are available:
+## Links
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Live Link: https://assignment-12-5d967.web.app/
+- Client Github: https://github.com/programming-hero-web-course1/b8a12-client-side-mohinranait
+
+- Server Github: https://github.com/programming-hero-web-course1/b8a12-server-side-mohinranait
+

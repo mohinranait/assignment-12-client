@@ -19,7 +19,7 @@ const SocilaLogin = () => {
             // Save user inforamtion in our database
             await axiosPublic.post("/users", {
                 name: response?.user?.displayName,
-                userName:'',
+                userName: response?.user?.displayName,
                 email: response?.user?.email,
             })
             navigate(location?.state ? location?.state : '/')

@@ -56,10 +56,10 @@ const PostCommentRow = ({comment,commentRefetch}) => {
         <>
             <div className='border shadow-sm bg-white'>
                 <form onSubmit={handleFeedbackForm} className='grid items-center grid-cols-3 gap-5 py-5 px-5'>
-                    <div className="w-full">
+                    <div className="w-full col-span-3 sm:col-span-1">
                         <p className='text-[15px] leading-6 text-gray-500 font-normal'>{ charecterLimit(commentText,20) } {commentText.length > 20 && <span className="text-blue-500 cursor-pointer" onClick={openModal}>Read more...</span> } </p>
                     </div>
-                    <div className="w-full flex justify-center">
+                    <div className="w-full col-span-2 sm:col-span-1 flex justify-center">
                         <select name="feedback" onChange={handleFeedback} className="py-2 text-gray-500 outline-gray-300 px-3 " id="">
                             <option value="">Feedback</option>
                             <option value="Destroys the environment">Destroys the environment</option>
@@ -67,7 +67,7 @@ const PostCommentRow = ({comment,commentRefetch}) => {
                             <option value="Others reason">Others reason</option>
                         </select>
                     </div>
-                    <div className="w-full flex justify-end">
+                    <div className="w-full col-span-1 sm:col-span-1 flex justify-end">
                         
                         <button type="submit" disabled={ !feedbackBtn && true} className={` rounded py-[5px]   items-center ${feedbackBtn ? 'bg-[#1abc9c] text-white' : ' text-gray-400 bg-gray-200'}`}> <span className='text-sm px-3   '>Report</span></button>
                     </div>

@@ -7,6 +7,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Anouncements from "../../components/anouncements/Anouncements";
 import PostCommentRow from "../../components/tableRows/PostCommentRow";
+import { FacebookShareButton } from "react-share";
 
 
 
@@ -19,7 +20,7 @@ const Details = () => {
     const queryClient = useQueryClient();
     const {id:paramsId} = useParams();
     const navigate = useNavigate();
-
+    const url = `https://assignment-12-5d967.web.app/post/${paramsId}`
 
     const {data:getPost, refetch} = useQuery({
         queryKey: ['singlePosts'],
@@ -79,7 +80,7 @@ const Details = () => {
                 if(result.data.success){
                     commentRefetch();
                     e.target.reset()
-                    toast.success("Commented", {id:toastId})
+                    toast.success("Comment Successfull", {id:toastId})
                 }else{
                     toast.error("Already Commented", {id:toastId})
                 }
@@ -90,13 +91,6 @@ const Details = () => {
             navigate("/login")
         }
     }
-
-
-  
-
-    
-
-    
     
  
     return (
@@ -122,20 +116,26 @@ const Details = () => {
                             <hr />
                             <div className='py-1'>
                                 <div className='flex px-5 gap-6'>
-                                    <div className=''>
+                                    <div  className='hidden md:block'>
                                         <span className='w-10 h-10 inline-block'></span>
                                     </div>
-                                    <div className='flex items-center justify-between gap-4 w-full'>
+                                    <div className='flex flex-wrap items-center justify-between gap-4 w-full'>
                                         <div className='flex items-center gap-4'>
-                                            <span onClick={() => handleVote('upvote')} className='flex gap-1 items-center text-[#1abc9c] cursor-pointer'> <FaThumbsUp /><span className='text-sm'>{upVote}</span></span>
-                                            <span onClick={() => handleVote('downvote')} className='flex gap-1 items-center text-[#db7a7a] cursor-pointer'><FaThumbsDown /><span className='text-sm'>{downVote}</span></span>
+                                            <span onClick={() => handleVote('upvote')} className='flex gap-1 items-center text-[#1abc9c] bg-[#f1fffc] cursor-pointer  px-2 py-1 rounded '> <FaThumbsUp /><span className='text-sm'>{upVote}</span></span>
+                                            <span onClick={() => handleVote('downvote')} className='flex gap-1 items-center text-[#db7a7a] bg-[#f7f0f0] cursor-pointer  px-2 py-1 rounded '><FaThumbsDown /><span className='text-sm'>{downVote}</span></span>
                                             <span className='flex gap-1 items-center text-gray-400'><FaCommentAlt /><span className='text-sm'>{comments?.length}</span></span>
                                             <span className='flex gap-1 items-center text-gray-400'><FaClock /><span className='text-xs text-gray-500'>Posted on : {new Date(createAt).toLocaleDateString('en-US', options )} </span></span>
                                         
                                         </div>
                                         <div className='flex items-center gap-4'>
                                             <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm px-3 py-1 rounded bg-gray-100  cursor-pointer hover:bg-gray-200'>Comment</span></span>
-                                            <span className='flex gap-1 items-center text-gray-400'><FaShare />  <span className='text-sm'>Share</span></span>
+
+                                            <FacebookShareButton url={url} quote={'Mohin'} hashtag="#Conversation">
+                                                {/* <FacebookIcon size={30} logoFillColor="white" round={true}> */}
+
+                                                <span className='flex gap-1 items-center text-gray-400'><FaShare />  <span className='text-sm'>Share</span></span>
+                                                {/* </FacebookIcon> */}
+                                            </FacebookShareButton>
                                         
                                         </div>
                                     </div>

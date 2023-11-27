@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
-import { FaBell } from "react-icons/fa";
+import { FaBars, FaBell } from "react-icons/fa";
 import useAnnouncement from "../hooks/useAnnouncement";
 import Logo from "./Logo";
 
 
-const Header = () => {
+const Header = ({setIsToggle, isToggle}) => {
     const [announcements] = useAnnouncement();
     const [isOpen , setIsOpen] = useState(false);
     const {user,logOut} = useAuth();
@@ -14,16 +15,18 @@ const Header = () => {
     const handleLogut = async () => {
         await logOut()
     }
+    
     return (
         <>
             <header className="py-3 shadow">
-                <div className="container ">
+                <div className="container px-4 md:px-0">
                     <div className="grid grid-cols-12 items-center ">
-                        <div className="col-span-3">
+                        <div className="col-span-6 sm:col-span-5 md:col-span-3 flex items-center gap-2 ">
+                           <span onClick={() => setIsToggle(!isToggle)} className="w-10 h-10 rounded-full sm:hidden flex items-center justify-center cursor-pointer text-gray-600"> <FaBars /></span>
                            <Logo />
                         </div>
-                        <div className="col-span-9 flex gap-4 justify-end items-center">
-                        <ul className="flex items-center justify-center gap-5">
+                        <div className=" col-span-6  sm:col-span-7 md:col-span-9 flex gap-4 justify-end items-center">
+                            <ul className="sm:flex hidden  items-center justify-center gap-5">
                                 <li><Link to={'/'}>Home</Link></li>
                                 <li><Link to={'/dashboard/package'} >Membership</Link></li>
                             </ul>
@@ -38,9 +41,9 @@ const Header = () => {
                                             <img className="w-10 h-10 rounded-full object-cover" src={user?.photoURL} alt="" />
                                         </span>
                                         <ul className={`absolute z-[80] right-0 top-full bg-white w-[150px] border rounded-md ${isOpen ? 'block':'hidden'} `}>
-                                            <li><div className="py-4 bg-gray-200 w-full   text-center">{user?.displayName}</div></li>
-                                            <li><Link className="pl-4 inline-block py-1 mt-3 hover:text-purple-500" to={'/dashboard'}>Dashboard</Link></li>
-                                            <li><button onClick={handleLogut} className="pl-4 inline-block py-1 mb-3 hover:text-purple-500">Logout</button></li>
+                                            <li><div className="py-4 bg-gray-100 w-full   text-center">{user?.displayName}</div></li>
+                                            <li><Link className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mt-3 hover:text-purple-500" to={'/dashboard'}>Dashboard</Link></li>
+                                            <li><button onClick={handleLogut} className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mb-3 hover:text-purple-500">Logout</button></li>
                                         </ul>
                                     </div>
                                 </> : 

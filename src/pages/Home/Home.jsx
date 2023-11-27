@@ -5,12 +5,14 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Anouncements from "../../components/anouncements/Anouncements";
 import { useState } from "react";
+import useAnnouncement from "../../hooks/useAnnouncement";
 
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
     const [page,setPage] = useState(1);
     const [searchValue, setSearchValue] = useState('');
+    const [announcements] = useAnnouncement();
 
 
     const {data:getAllTags} = useQuery({
@@ -46,7 +48,27 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='my-16'>
+            {
+                announcements.length > 0 &&  <section className="mt-10">
+                <div className="container px-5 md:px-0">
+                    <div className="flex justify-center flex-wrap gap-4">
+                        {
+                            announcements?.map(item =>  <div key={item?._id} className="p-3 flex gap-1 bg-white rounded-3xl">
+                            <img className="h-8 rounded-full w-8" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                            <div>
+                                <p className="text-sm text-gray-500">{item?.title}</p>
+                                <p className="text-[13px] text-gray-400">{item?.description}</p>
+                            </div>
+                        </div> )
+                        }
+                       
+                    </div>
+                </div>
+            </section>
+            }
+           
+
+            <section className='my-10'>
                 <div className="container px-4 md:px-0">
                     <div className='grid lg:grid-cols-3  gap-7'>
                         <div className='col-span-2 grid grid-cols-1 gap-7'>

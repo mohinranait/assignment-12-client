@@ -38,8 +38,6 @@ const Register = () => {
             }
 
 
-
-
             // Upload profile image
             const image = data.image[0];
             const imageUrl = await uploadImage(image);
@@ -53,7 +51,7 @@ const Register = () => {
             // Save user info my database
             await axiosPublic.post("/users", {
                 name,
-                userName: userName ? userName :'',
+                userName: userName ? userName :name,
                 email,
                 profile: imageUrl,
             })

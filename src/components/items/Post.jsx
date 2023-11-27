@@ -41,18 +41,16 @@ const Post = ({post}) => {
                 </div>
                 <hr />
                 <div className='py-1'>
-                    <div className='flex px-5 gap-6'>
-                        <div className=''>
+                    <div className='flex px-5 gap-6 '>
+                        <div className='hidden md:block'>
                             <span className='w-10 h-10 inline-block'></span>
                         </div>
                         <div className='flex items-center justify-between gap-4 w-full'>
                             <div className='flex items-center gap-4'>
-                                <span className='flex gap-1 items-center text-gray-400'><FaClock /><span className='text-xs text-gray-500'>Posted on : {new Date(createAt).toLocaleDateString('en-US', options )} </span></span>
-                            
+                                <span className='flex gap-1 items-center text-gray-400'><FaClock className='hidden sm:block' /><span className='text-xs text-gray-500'>Posted on : {new Date(createAt).toLocaleDateString('en-US', options )} </span></span>
                             </div>
                             <div className='flex items-center gap-4'>
-                            <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm'>Comments: {comments?.length}</span></span>
-                             
+                                <span className='flex gap-1 items-center text-gray-400'> <span className='text-sm'>Comments: {comments?.length}</span></span>
                             </div>
                         </div>
                     </div>
