@@ -19,10 +19,10 @@ const AdminNavLinks = [
     },
     {
         id : 4,
-        link : "comments",
-        name : "reported-comments",
+        link : "reported-comments",
+        name : "Reported comments",
         icon : <IoGiftOutline className='text-lg' />,
-        path : 'comments',
+        path : 'reported-comments',
     },
     {
         id : 1,

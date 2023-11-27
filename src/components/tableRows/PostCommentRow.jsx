@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import { FaEnvelope } from "react-icons/fa";
 import { charecterLimit } from "../../services/utilitis";
 import CommentDisplay from "../modal/CommentDisplay";
+import { useNavigate } from "react-router-dom";
 
 
 const PostCommentRow = ({comment,commentRefetch}) => {
@@ -14,8 +14,8 @@ const PostCommentRow = ({comment,commentRefetch}) => {
     const {user} = useAuth();
     const axios = useAxios();
     const [feedbackBtn, setFeedbackBtn] = useState('');
-
-    let [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const navigate = useNavigate();
 
     function closeModal() {
         setIsOpen(false)
@@ -48,7 +48,7 @@ const PostCommentRow = ({comment,commentRefetch}) => {
                 commentRefetch();
             }
         }else{
-            Navigate('/login')
+           navigate('/login')
         }
     }
 

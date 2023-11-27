@@ -15,6 +15,7 @@ import AnnounceCreate from '../pages/Dashboard/AnnounceCreate';
 import Details from '../pages/Details/Details';
 import AdminProfile from '../pages/Dashboard/AdminProfile';
 import Dashboard from '../components/dashboard/Dashboard';
+import ReportedActivates from '../pages/Dashboard/ReportedActivates';
 
 const myRoutes = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ const myRoutes = createBrowserRouter([
             {
                 path :'make-announcements',
                 element : <AnnounceCreate />
+            },
+            {
+                path :'reported-comments',
+                element : <ReportedActivates />
             },
             {
                 path :'admin-profile',
