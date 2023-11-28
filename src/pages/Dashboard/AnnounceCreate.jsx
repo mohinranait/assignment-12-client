@@ -17,7 +17,7 @@ const AnnounceCreate = () => {
         const annoce = {title, description,authorImage, authorName}
 
         try {
-            const {data} = await axios.post('/announcements', annoce )
+            const {data} = await axios.post(`/announcements?email=${user?.email}`, annoce )
             if(data.success){
                 toast.success("Create Successfull");
                 form.reset();

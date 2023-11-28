@@ -42,8 +42,8 @@ const Header = ({setIsToggle, isToggle}) => {
                                         </span>
                                         <ul className={`absolute z-[80] right-0 top-full bg-white w-[150px] border rounded-md ${isOpen ? 'block':'hidden'} `}>
                                             <li><div className="py-4 bg-gray-100 w-full   text-center">{user?.displayName}</div></li>
-                                            <li><Link className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mt-3 hover:text-purple-500" to={'/dashboard'}>Dashboard</Link></li>
-                                            <li><button onClick={handleLogut} className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mb-3 hover:text-purple-500">Logout</button></li>
+                                            <li><Link className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mt-3 hover:text-blue-600" to={'/dashboard'}>Dashboard</Link></li>
+                                            <li><button onClick={handleLogut} className="pl-4 w-full text-left hover:bg-gray-50 inline-block py-1 mb-3 hover:text-blue-600">Logout</button></li>
                                         </ul>
                                     </div>
                                 </> : 

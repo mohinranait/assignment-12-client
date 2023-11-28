@@ -174,11 +174,9 @@ const Details = () => {
                             comments.length > 0 &&  <p className="text-lg font-medium mt-8">Comments</p>
                         }
                        
-
                         { comments &&
                             comments?.map(comment => <PostCommentRow key={comment?._id} comment={comment} commentRefetch={commentRefetch} /> )
                         }
-                     
 
                     </div>
                     <div>

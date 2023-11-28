@@ -48,7 +48,7 @@ const UpdatePosts = () => {
                 updateAt: new Date(),
             }
 
-            const result = await axios.patch(`/posts/${post?._id}`, updatePostData )
+            const result = await axios.patch(`/posts/${post?._id}?email=${user?.email}`, updatePostData )
             if(result){
                 toast.success("Update Successfull", {id: toastId});
                 navigate('/dashboard/my-posts')
@@ -73,10 +73,10 @@ const UpdatePosts = () => {
                             </div>
                             <div className="mb-5">
                                 <label className="mb-2 inline-block" htmlFor="">Search Tag</label>
-                                <select name="tag" {...register('tag', {required:"Filed is required"})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
+                                <select defaultValue={post?.tag} name="tag" {...register('tag', {required:"Filed is required"})} className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' id="">
                                     <option value="">Select Tag</option>
                                     {
-                                        getAllTags?.map(item => <option key={item?._id} value={item?.tag} selected={post?.tag == item?.tag} >{item?.tag}</option> )
+                                        getAllTags?.map(item => <option key={item?._id} value={item?.tag} selected={post?.tag == item?.tag? 'selected':''} >{item?.tag}</option> )
                                     }
                                 </select>
                                 <p className="text-red-500 text-sm">{errors.tag && errors.tag.message }</p>

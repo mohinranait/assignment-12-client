@@ -45,7 +45,7 @@ const AddPostForm = () => {
                 authorEmail: user?.email,
                 createAt: new Date(),
             }
-            await axios.post('/posts', post )
+            await axios.post(`/posts?email=${user?.email}`, post )
             toast.success("Post Create Successfull", {id: toastId});
             navigate('/dashboard/my-posts')
         } catch (error) {

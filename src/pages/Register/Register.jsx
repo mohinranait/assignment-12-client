@@ -9,8 +9,6 @@ import { useState } from "react";
 
 
 
-
-
 const Register = () => {
     const {createUser,userUpdate} = useAuth();
     const axiosPublic = useAxiosPublic();
@@ -20,10 +18,6 @@ const Register = () => {
 
     
     const onSubmit = async (data) => {
-
-        
-
-        
 
         let toastId = toast.loading('Loading...')
         try {
@@ -66,7 +60,6 @@ const Register = () => {
                 toast.error(error.message ,{id: toastId})
             }
         }
-       
     }
 
     const emailValidation = {

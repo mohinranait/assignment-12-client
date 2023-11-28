@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 
 const LeftSidebar = ({toggleLeft}) => {
     const {isAdmin} = useAdmin();
-    const {logOut} = useAuth();
+    const {logOut,user} = useAuth();
 
     const handleLogout = async () => {
         await logOut()
@@ -18,6 +18,14 @@ const LeftSidebar = ({toggleLeft}) => {
     return (
         <div className='flex flex-col h-full'>
             <ul className='leftMenus flex-grow '>
+                <li className='mx-4 py-3 border-b border-gray-200'>
+                    <div className='bg-purple-500  rounded-md px-2 py-2 flex justify-between items-center'>
+                        <div>
+                            <span className='text-white'>Is {isAdmin? "Admin":'User'} </span>
+                        </div>
+                        <img src={user?.photoURL} className='w-10 h-10 rounded-full' alt="" />
+                    </div>
+                </li>
                 {
                     isAdmin ?
                     AdminNavLinks?.map(link =>   

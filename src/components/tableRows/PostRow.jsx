@@ -8,15 +8,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
 import toast from 'react-hot-toast';
 import { FaGlobe, FaGlobeAsia, FaLock } from 'react-icons/fa';
+import useAuth from '../../hooks/useAuth';
+import { charecterLimit } from '../../services/utilitis';
 
 const PostRow = ({post,index, refetch}) => {
     const {image, title, tag, upVote,downVote,_id,visivility} = post ||{};
     const axios = useAxios();
+    const {user} = useAuth();
     const queryClient = useQueryClient();
 
     const {mutate:myPostsDelete} = useMutation({
         mutationFn: async (id) => {
-            const {data} = await axios.delete(`/posts/${id}`)
+            const {data} = await axios.delete(`/posts/${id}?email=${user?.email}`)
             if(data.success){
                 Swal.fire({
                     title: "Deleted!",
@@ -51,7 +54,7 @@ const PostRow = ({post,index, refetch}) => {
     const handlePostVisibility = async (currentValue) => {
         let dataValue = !currentValue
         try {
-            await axios.patch(`/posts/${_id}` , {visivility:dataValue})
+            await axios.patch(`/posts/${_id}?email=${user?.email}` , {visivility:dataValue})
             refetch();
             toast.success("Updated visibility")
         } catch (error) {
@@ -67,7 +70,7 @@ const PostRow = ({post,index, refetch}) => {
                         {/* {
                             image && <img src={image} className='w-16' alt="" />
                         } */}
-                        <p className='text-gray-500 text-sm'>{title}</p>
+                        <p className='text-gray-500 text-sm'>{ charecterLimit(title, 50)}</p>
                     </div>
                 </td>
                 <td className="py-2 pl-2 ">

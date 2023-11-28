@@ -2,15 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import UserRow from "../../components/tableRows/UserRow";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 
 const ManageUsers = () => {
     const axiox = useAxios();
+    const {user} = useAuth();
     const [search, setSearch] = useState('')
     const {data:users=[]} = useQuery({
         queryKey:['users',search],
         queryFn: async () => {
-            const {data} = await axiox.get(`users?search=${search}`);
+            const {data} = await axiox.get(`users?email=${user?.email}&search=${search}`);
             return data;
         
         }
@@ -48,9 +50,6 @@ const ManageUsers = () => {
                                 }                            
                             </tbody>
                         </table>
-                        <div>
-                            {/* {myPosts.length == 0 && <div className="text-center bg-blue-50 text-blue-600 font-medium py-2 mt-4 rounded ">No Data found</div> } */}
-                        </div>
                     </div>
                 </div>
             </div>
