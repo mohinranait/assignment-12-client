@@ -92,7 +92,7 @@ const AdminProfile = () => {
             </div>
             {/* seciotn */}
             <div className="grid grid-cols-3 gap-5 mt-5">
-                <div className="w-full col-span-2  mb-5  bg-white border border-gray-50 rounded-lg shadow-sm ">
+                <div className="w-full col-span-3 md:col-span-2  mb-5  bg-white border border-gray-50 rounded-lg shadow-sm ">
                     <div className="flex relative justify-end px-4 pt-4">
                         <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500  hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                             <span className="sr-only">Open dropdown</span>
@@ -122,12 +122,12 @@ const AdminProfile = () => {
                         
                     </div>
                 </div>
-                <div className="">
+                <div className="col-span-3 md:col-span-1 ">
                    <CreateTag />
                 </div>
 
             </div>
-            <div className="lg:w-[40vw]  mx-auto flex items-center justify-center">
+            <div className="lg:w-[40vw] mt-7 mx-auto flex items-center justify-center">
                 <PichartsJs analitics={analitics} />
             </div>
    </div>

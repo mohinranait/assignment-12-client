@@ -27,8 +27,8 @@ const Header = ({setIsToggle, isToggle}) => {
                         </div>
                         <div className=" col-span-6  sm:col-span-7 md:col-span-9 flex gap-4 justify-end items-center">
                             <ul className="sm:flex hidden  items-center justify-center gap-5">
-                                <li><Link to={'/'}>Home</Link></li>
-                                <li><Link to={'/dashboard/package'} >Membership</Link></li>
+                                <li><Link className="text-gray-600" to={'/'}>Home</Link></li>
+                                <li><Link className="text-gray-600" to={'/dashboard/package'} >Membership</Link></li>
                             </ul>
                             <span className="relative">
                                 <span className="text-gray-500"> <FaBell size={23} /> </span>
@@ -47,7 +47,7 @@ const Header = ({setIsToggle, isToggle}) => {
                                         </ul>
                                     </div>
                                 </> : 
-                                <Link to={'/login'} className="px-4 py-2 inline-block bg-purple-500 text-sm font-medium rounded text-white">Join Apply</Link>
+                                <Link to={'/login'} className="px-4 py-2 inline-block bg-blue-600 hover:bg-blue-700 text-sm font-medium rounded text-white">Join Apply</Link>
                             }
                            
                         </div>

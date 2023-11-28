@@ -98,7 +98,7 @@ const Details = () => {
             <div className="container px-4 md:px-0">
                 <div className='grid lg:grid-cols-3  gap-5'>
                     <div className='col-span-2 grid grid-cols-1 gap-7'>
-                        <div className='border shadow-sm bg-white'>
+                        <div className='border border-gray-100 shadow-sm bg-white'>
                             <div className='flex gap-5 py-5 px-5'>
                                 <div className=''>
                                     <span className='w-20 h-20 inline-block'>
@@ -145,7 +145,7 @@ const Details = () => {
                         </div>
 
                         
-                        <div className="bg-white  border shadow-sm">
+                        <div className="bg-white border-gray-100 border shadow-sm">
                             <form onSubmit={handleCommentSubmit}>
                                 <div  className="flex gap-5 p-5">
                                     {

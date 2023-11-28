@@ -22,9 +22,9 @@ const ManageUsers = () => {
     return (
         <>
             <div>
-                <div className="mt-5">
+                <div className="mt-5 px-3 md:px-0">
                     <div className="overflow-x-auto md:w-[70vw] mx-auto">
-                        <div className="flex justify-between mb-5 items-center">
+                        <div className="flex flex-col md:flex-row justify-between mb-5 items-center">
                             <p className="text-xl font-medium text-gray-600 mb-3">Manage Users</p>
                             <div className="flex gap-2 items-center">
                                 <span>Search </span>

@@ -54,7 +54,7 @@ const PostCommentRow = ({comment,commentRefetch}) => {
 
     return (
         <>
-            <div className='border shadow-sm bg-white'>
+            <div className='border border-gray-100 shadow-sm bg-white'>
                 <form onSubmit={handleFeedbackForm} className='grid items-center grid-cols-3 gap-5 py-5 px-5'>
                     <div className="w-full col-span-3 sm:col-span-1">
                         <p className='text-[15px] leading-6 text-gray-500 font-normal'>{ charecterLimit(commentText,20) } {commentText.length > 20 && <span className="text-blue-500 cursor-pointer" onClick={openModal}>Read more...</span> } </p>

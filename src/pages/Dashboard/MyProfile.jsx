@@ -77,7 +77,7 @@ const MyProfile = () => {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto md:w-[70vw] mx-auto">
+                <div className="overflow-x-auto min-w-[700px] md:w-[70vw] mx-auto">
                     <p className="text-xl font-medium text-gray-600 mb-3">Recent posts</p>
                     <table className="table-auto w-full border-collapse border">
                         <thead>
@@ -86,6 +86,7 @@ const MyProfile = () => {
                                 <th className="text-left py-2 pl-2">Posts</th>
                                 <th className="text-left py-2 pl-2">Votes</th>
                                 <th className="text-left py-2 pl-2">Comments</th>
+                                <th className="text-left py-2 pl-2">Visibility</th>
                                 <th className="text-left py-2 pl-2">Action</th>
                             </tr>
                         </thead>

@@ -57,7 +57,7 @@ const AddPostForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid md:grid-cols-2 gap-5">
                     <div>
                         <div className="mb-5">
                             <label className="mb-2 inline-block" htmlFor="">Title</label>
@@ -97,7 +97,7 @@ const AddPostForm = () => {
                     </div>
                 </div>
         
-                <div className="grid grid-cols-2 gap-5 mb-5 mt-6">
+                <div className="grid md:grid-cols-2 gap-5 mb-5 mt-6">
                     <div>
                         <button className="w-full py-2 bg-purple-600 text-white rounded">Save </button>
                     </div>

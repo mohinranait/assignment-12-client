@@ -43,30 +43,33 @@ const Login = () => {
     return (
         <section className=''>
             <div className='' >
-                <div className="container flex items-start">
-                    <div className=" w-[300px] md:w-[450px] overflow-hidden  mx-auto rounded-lg">
+                <div className="container flex items-start my-10">
+                    <div className=" w-[300px] bg-white  md:w-[450px] overflow-hidden  mx-auto rounded-lg">
                         
                             <div className='px-5 py-5 md:px-10 md:pb-10 rounded-b-lg bg-secondary '>
-                                <div className='text-3xl pb-5 font-semibold text-gray-800'>Login </div>
+                                <div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6681/6681204.png" className="w-32 h-32 object-cover mx-auto" alt="" />
+                                </div>
+                                <div className='text-xl pb-5 font-semibold text-gray-600'>Login </div>
                                 <div>
                                     <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className='mb-4'>
-                                            <label htmlFor="" className='mb-1 block font-medium text-gray-800'>Email</label>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-600'>Email</label>
                                             <input type="email" name='email' {...register("email", emailValidation)} placeholder='Email' className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' />
                                             <p className="text-red-500 text-sm">{errors.email && errors.email.message }</p>
                                         </div>
                                         <div className='mb-5'>
-                                            <label htmlFor="" className='mb-1 block font-medium text-gray-800'>Password</label>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-600'>Password</label>
                                             <input type="password" name='password' {...register("password", { required: 'Password is required' })} placeholder='Password' className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' />
                                             <p className="text-red-500 text-sm">{errors.password && errors.password.message }</p>
                                         </div>
                                         <div className='mb-4 flex gap-5'>
-                                            <button type='submit' className='px-5 py-3 rounded-md bg-purple-500 text-white font-medium w-full'>Sign In</button>
+                                            <button type='submit' className='px-5 py-3 rounded-md bg-blue-600 text-white font-medium w-full'>Sign In</button>
                                            <SocilaLogin />
                                         </div>
                                     </form>
                                 </div>
-                                <p className='text-center text-gray-700'>Create a new  account ? <Link to={'/register'} className='text-purple-500'>Sign Up</Link> </p>
+                                <p className='text-center text-gray-700'>Create a new  account ? <Link to={'/register'} className='text-blue-600'>Sign Up</Link> </p>
                                 
                             </div>
                     

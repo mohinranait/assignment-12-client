@@ -30,12 +30,11 @@ const AnnounceCreate = () => {
         <div>
             <p className='text-2xl my-5 font-medium'>Create a new announcement</p>
              <form onSubmit={handleCrateAnnouncement}>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid md:grid-cols-2 gap-5">
                     <div>
                         <div className="mb-5">
                             <label className="mb-2 inline-block" htmlFor="">Title</label>
                             <input type="text" name='title'  placeholder='Title' className='px-3 w-full py-3  border border-gray-200 text-gray-700 rounded-md outline-none' />
-
                         </div>
                        
                         <div className="mb-5">

@@ -19,7 +19,7 @@ const ReportedActivates = () => {
             <div>
                 <div className="mt-5">
                     <div className="overflow-x-auto md:w-[70vw] mx-auto">
-                    <p className="text-xl font-medium text-gray-600 mb-3">My posts</p>
+                    <p className="text-xl font-medium text-gray-600 mb-3">Comment Reportes</p>
                         <table className="table-auto w-full border-collapse border">
                             <thead>
                                 <tr className="bg-gray-200 py-2">

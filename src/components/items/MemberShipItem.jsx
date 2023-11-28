@@ -32,7 +32,7 @@ const MemberShipItem = ({item}) => {
 
 
   return (
-    <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8  ">
+    <div className="w-full md:max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8  ">
       <h5 className="mb-4 text-xl font-medium text-gray-500 ">
         {item?.name}
       </h5>

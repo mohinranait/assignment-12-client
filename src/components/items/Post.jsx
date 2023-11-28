@@ -21,7 +21,7 @@ const Post = ({post}) => {
 
     return (
         <>
-            <div className='border shadow-sm bg-white'>
+            <div className='border border-gray-100 shadow-sm bg-white'>
                 <div className='flex gap-5 py-5 px-5'>
                     <div className=''>
                         <span className='w-10 h-10 inline-block'>
@@ -33,8 +33,8 @@ const Post = ({post}) => {
                         </div>
                     </div>
                     <div className='w-full'>
-                        <p className='text-lg text-gray-600 font-medium'> <Link to={`/post/${_id}`}>{title}</Link> </p>
-                        <p className='text-sm text-[#3c78cd] mb-3'># {tag}</p>
+                        <p className='text-lg text-gray-500 font-medium'> <Link to={`/post/${_id}`}>{title}</Link> </p>
+                        <p className='text-xs text-[#818181] mb-3'># {tag}</p>
                         <hr className='pb-3'/>
                         <p className='text-[15px] leading-6 text-gray-500 font-normal'>{description}</p>
                     </div>

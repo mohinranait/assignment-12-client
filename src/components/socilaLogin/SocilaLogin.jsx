@@ -1,4 +1,4 @@
-import { FaGoogle } from "react-icons/fa";
+
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -31,7 +31,9 @@ const SocilaLogin = () => {
     
     return (
         <>   
-            <button onClick={handleGoogleLogin} type='button' className='px-5 py-3 rounded-md bg-[#EE6358] text-white font-medium '>  <FaGoogle />  </button>   
+            <button onClick={handleGoogleLogin} type='button' className='px-5 py-3 rounded-md bg-gray-100 text-white font-medium '>  
+                <img src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png" className="w-6 h-6 object-contain" alt="" />
+              </button>   
         </>
     );
 };

@@ -28,7 +28,7 @@ const MemberShip = () => {
     return (
         <div>
             <div className="container mt-10">
-                <div className='lg:w-[800px] mx-auto grid grid-cols-2 gap-5'>
+                <div className='w-full lg:w-[800px] pb-10 mx-auto grid md:grid-cols-2 gap-5'>
 
                     {
                         pacakges?.map(item => <MemberShipItem key={item?._id} item={item} /> )

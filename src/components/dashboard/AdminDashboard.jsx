@@ -1,9 +1,11 @@
+import useAuth from "../../hooks/useAuth";
 
 
 const AdminDashboard = () => {
+    const {user} = useAuth();
     return (
         <div>
-            Admin Dashboard
+            <p className="text-2xl lg:text-4xl text-gray-600 font-medium">Hello <span className="text-blue-600 font-semibold">{user?.displayName}</span></p>
         </div>
     );
 };
