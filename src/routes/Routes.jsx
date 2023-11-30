@@ -38,7 +38,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'post/:id',
                 element : <Details /> ,
-                loader : async ({params}) => await fetch(`http://localhost:5000/posts/${params?.id}`)
+                loader : async ({params}) => await fetch(`https://assignment-12-green.vercel.app/posts/${params?.id}`)
             },
         ]
     },
@@ -57,7 +57,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'posts/update/:id',
                 element : <UpdatePosts />,
-                loader : async ({params}) => await fetch(`http://localhost:5000/posts/${params.id}`)
+                loader : async ({params}) => await fetch(`https://assignment-12-green.vercel.app/posts/${params.id}`)
             },
             {
                 path : 'my-posts',

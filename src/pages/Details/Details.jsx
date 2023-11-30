@@ -97,7 +97,7 @@ const Details = () => {
         <section className='my-16'>
             <div className="container px-4 md:px-0">
                 <div className='grid lg:grid-cols-3  gap-5'>
-                    <div className='col-span-2 grid grid-cols-1 gap-7'>
+                    <div className='lg:col-span-2 grid grid-cols-1 gap-7'>
                         <div className='border border-gray-100 shadow-sm bg-white'>
                             <div className='flex gap-5 py-5 px-5'>
                                 <div className=''>

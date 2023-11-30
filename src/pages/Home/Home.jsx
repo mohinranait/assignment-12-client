@@ -91,10 +91,10 @@ const Home = () => {
                         <button onClick={handleSort} className="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white"> Sort by {sort=='desc' ? 'default' : 'popularity'}   </button>
                     </div>
                     <div className='grid lg:grid-cols-3  gap-7'>
-                        <div className='col-span-2 grid grid-cols-1 gap-7'>
+                        <div className='lg:col-span-2 grid grid-cols-1 gap-7'>
                             <Posts getAllPosts={getAllPosts} page={page} setPage={setPage} /> 
                         </div>
-                        <div>
+                        <div className="col-span-1">
                             <div className="grid gap-7">
                                 <Anouncements />
                                 <div className="bg-white py-5 px-4 shadow-sm border border-gray-100">
