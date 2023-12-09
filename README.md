@@ -13,11 +13,10 @@
 - User profile mange
 - Mange all user by Admin
 - post Pagination
+- One can visit and see the details page of the post. He will login and see his info on his dashboard. He can post a conversation to have a conversation if he wants. You can see the details of the post. And can comment there.
 
 ## Links
 
 - Live Link: https://assignment-12-5d967.web.app/
-- Client Github: https://github.com/programming-hero-web-course1/b8a12-client-side-mohinranait
 
-- Server Github: https://github.com/programming-hero-web-course1/b8a12-server-side-mohinranait
 
