@@ -47,7 +47,7 @@ const Register = () => {
                 name,
                 userName: userName ? userName :name,
                 email,
-                profile: imageUrl,
+                avater: imageUrl,
             })
             toast.success("Register success", {id: toastId})
             navigate("/")

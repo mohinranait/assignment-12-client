@@ -19,14 +19,16 @@ const Post = ({post}) => {
         }
     })
 
+    console.log(post);
+
     return (
         <>
             <div className='border border-gray-100 shadow-sm bg-white'>
                 <div className='flex gap-5 py-5 px-5'>
                     <div className=''>
-                        <span className='w-10 h-10 inline-block'>
-                            <img className='w-10 h-10 rounded-full object-cover' src={ authorImage ? authorImage : "https://www.seekpng.com/png/detail/966-9665317_placeholder-image-person-jpg.png"} alt="" />
-                        </span>
+                        <Link to={`/profile/${post?.authorEmail}`} className='w-10 h-10 inline-block'>
+                            <img className='w-10 h-10 rounded-full object-cover' src={ authorImage ? authorImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuC4jWzreRhoEnnxA9XUGbDawbk-1z2UEOhi9ZQw7p3Q&s"} alt="" />
+                        </Link>
                         <div className='flex flex-col items-center gap-3 mt-3'>
                             <span className='flex gap-1 items-center text-[#1abc9c] cursor-pointer'> <FaThumbsUp /><span className='text-sm'>{upVote}</span></span>
                             <span className='flex gap-1 items-center text-[#db7a7a] cursor-pointer'><FaThumbsDown /><span className='text-sm'>{downVote}</span></span>

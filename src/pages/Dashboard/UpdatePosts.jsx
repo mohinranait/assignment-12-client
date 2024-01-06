@@ -42,8 +42,8 @@ const UpdatePosts = () => {
                 tag : data.tag,
                 description: data.description,
                 // image : newImg ? newImg : post?.image,
-                // authorImage : user?.photoURL,
-                // authorName: user?.displayName,
+                authorImage : user?.photoURL,
+                authorName: user?.displayName,
                 // authorEmail: user?.email,
                 updateAt: new Date(),
             }

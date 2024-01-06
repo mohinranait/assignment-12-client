@@ -6,6 +6,8 @@ import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import PostRow from "../../components/tableRows/PostRow";
 import Loader from "../../components/Loader/Loader";
+import { CiEdit } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 
@@ -62,7 +64,7 @@ const MyProfile = () => {
                     </div>
                     <div className="flex flex-col items-center pb-10">
                         <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={user?.photoURL} alt="Bonnie image"/>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">{user?.displayName}</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 flex gap-2 items-center ">{user?.displayName}   <Link to={`/dashboard/update-profile/${user?.email}`} ><CiEdit /></Link> </h5>
                         <span className="text-sm text-gray-500 ">{user?.email}</span>
                         <div className="flex mt-2 md:mt-6">
                             {
@@ -71,6 +73,7 @@ const MyProfile = () => {
                                 :
                                 <div className="inline-flex px-5 py-2 rounded items-center bg-green-50 text-gray-600 text-sm font-medium text-center  "> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ77MLSpVDEx2-IRw-_2a1ja0UXdz33FcYKNG4HNwy2ntSW-YZnUT_2C9jqb8mFx2Vmqh0&usqp=CAU" className="w-5 " alt="" /> Gold</div>
                             }
+                          
                           
                           
                         </div>

@@ -4,8 +4,7 @@ import { signOut } from 'firebase/auth';
 import auth from '../services/firebase';
 
 export const instance = axios.create({
-    baseURL: "https://assignment-12-green.vercel.app",
-    // baseURL: "http://localhost:5000",
+    baseURL: import.meta.env.VITE_APP_URL,
     withCredentials:true
 })
 

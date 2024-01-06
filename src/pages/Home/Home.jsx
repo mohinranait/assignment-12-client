@@ -18,7 +18,7 @@ const Home = () => {
 
     
 
-    const {data:getAllTags} = useQuery({
+    const {data:getAllTags=[]} = useQuery({
         queryKey: ['getAll-tags'],
         queryFn : async () => {
             const {data} = await axiosPublic.get('/get-all-tags');

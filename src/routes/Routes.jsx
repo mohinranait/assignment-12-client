@@ -17,6 +17,8 @@ import AdminProfile from '../pages/Dashboard/AdminProfile';
 import Dashboard from '../components/dashboard/Dashboard';
 import ReportedActivates from '../pages/Dashboard/ReportedActivates';
 import AdminRoute from './AdminRoute';
+import Profile from '../pages/profile/Profile';
+import UpdateProfile from '../pages/Dashboard/UpdateProfile';
 
 const myRoutes = createBrowserRouter([
     {
@@ -26,6 +28,11 @@ const myRoutes = createBrowserRouter([
             {
                 path: "/",
                 element : <Home />
+            },
+            {
+                path: "/profile/:email",
+                element : <Profile />,
+                loader : async ({params}) => await fetch(`${import.meta.env.VITE_APP_URL}/single-user/${params?.email}`)
             },
             {
                 path : "/login",
@@ -38,7 +45,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'post/:id',
                 element : <Details /> ,
-                loader : async ({params}) => await fetch(`https://assignment-12-green.vercel.app/posts/${params?.id}`)
+                loader : async ({params}) => await fetch(`${import.meta.env.VITE_APP_URL}/posts/${params?.id}`)
             },
         ]
     },
@@ -57,7 +64,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'posts/update/:id',
                 element : <UpdatePosts />,
-                loader : async ({params}) => await fetch(`https://assignment-12-green.vercel.app/posts/${params.id}`)
+                loader : async ({params}) => await fetch(`${import.meta.env.VITE_APP_URL}/posts/${params.id}`)
             },
             {
                 path : 'my-posts',
@@ -66,6 +73,11 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'my-profile',
                 element : <MyProfile />,
+               
+            },
+            {
+                path : 'update-profile/:email',
+                element : <UpdateProfile />,
                
             },
             {
@@ -91,6 +103,7 @@ const myRoutes = createBrowserRouter([
                 path :'admin-profile',
                 element : <AdminRoute><AdminProfile /></AdminRoute>
             },
+          
             
         ]
     }

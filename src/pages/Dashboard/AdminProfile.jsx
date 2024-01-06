@@ -5,6 +5,8 @@ import { IoCartOutline,   IoTrendingDownOutline, IoTrendingUp } from 'react-icon
 import CreateTag from "../../components/forms/CreateTag";
 import { FaInbox,  FaUser } from "react-icons/fa";
 import PichartsJs from "../../components/Chart/PichartsJs";
+import { CiEdit } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const AdminProfile = () => {
 
@@ -117,7 +119,7 @@ const AdminProfile = () => {
                     </div>
                     <div className="flex flex-col items-center pb-10">
                         <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={user?.photoURL} alt="Bonnie image"/>
-                        <h5 className="mb-1 text-xl font-medium text-gray-900 ">{getUser?.name}</h5>
+                        <h5 className="mb-1 text-xl font-medium text-gray-900 flex gap-2 ">{getUser?.name}  <Link to={`/dashboard/update-profile/${user?.email}`} ><CiEdit /></Link> </h5>
                         <span className="text-sm text-gray-500 ">{getUser?.email} <span className="text-[10px] px-2 bg-green-100 text-green-500 py-[2px] rounded">Admin</span> </span>
                         
                     </div>
